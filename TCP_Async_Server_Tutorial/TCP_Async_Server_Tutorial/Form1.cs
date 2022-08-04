@@ -21,10 +21,8 @@ namespace TCP_Async_Server_Tutorial
         {
             InitializeComponent();
         }
-
+        //TcpClient 와 그에 해당하는 streamwriter, streamreader를 한번에 묶어서 저장해야할듯. 즉, 구조체? c#에선 뭐라고 부르지 어쨋든 그거 써야할듯.
         private List<TcpClient> clients;
-        private List<StreamWriter> streamwriters;
-        private List<StreamReader> streamreaders;
 
         private TcpListener listener;
         private int user_count = 0;
@@ -39,8 +37,12 @@ namespace TCP_Async_Server_Tutorial
         private void button2_Click(object sender, EventArgs e)
         {
             string sendData = textBox3.Text;
-            foreach(StreamWriter strWriter in streamwriters)
+            foreach (TcpClient client in clients)
+            {
+                StreamWriter strWriter = new StreamWriter(client.GetStream());
                 strWriter.WriteLine(sendData);
+            }
+
             writeRichTextbox(sendData);
         }
 
@@ -57,12 +59,15 @@ namespace TCP_Async_Server_Tutorial
             listener.Start();
             writeRichTextbox("클라이언트 대기중....");
 
+            //언제 클라이언트가 새로 접속할지 모르므로 따로 스레드를 만들어서 클라연결을 받는다.
             Thread get_client = new Thread(Get_Client);
             get_client.IsBackground = true;
             get_client.Start();
 
-            Thread Chat = new Thread();
-            
+            //클라가 몇명이 접속했든 채팅기능은 작동해야하므로 이놈도 스레드를 하나 더 만든다.
+            Thread Chat = new Thread(Chatting);
+            Chat.IsBackground = true;
+            Chat.Start();
 
 
         }
@@ -76,8 +81,6 @@ namespace TCP_Async_Server_Tutorial
                     if (client != null)
                     {
                         clients.Add(client);
-                        streamwriters.Add(new StreamWriter(client.GetStream()));
-                        streamreaders.Add(new StreamReader(client.GetStream()));
                         user_count++;
                     }
                     Thread.Sleep(50);
@@ -89,13 +92,20 @@ namespace TCP_Async_Server_Tutorial
             }
         }
 
-        private async Task<bool> check_client_list()
+        private void Chatting()
         {
-            while (true)
+            try
             {
-                if (clients.Count > 0)
-                    return true;
-                Thread.Sleep(50);
+                foreach (TcpClient client in clients)
+                {
+                    StreamReader strReader = new StreamReader(client.GetStream());
+                    string receivedData = strReader.ReadLine();
+                    writeRichTextbox(receivedData);
+                }
+            }
+            catch 
+            {
+                return;
             }
         }
 

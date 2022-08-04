@@ -46,23 +46,31 @@ namespace TCP_Server_Tutorial
 
         private void connect()
         {
-            TcpListener Listener = new TcpListener(IPAddress.Parse(textBox1.Text), int.Parse(textBox2.Text));
-
-            Listener.Start(); //tcp리스닝 시작
-            writeRichTextbox("클라이언트 대기중....");
-
-            TcpClient client1 = Listener.AcceptTcpClient();
-
-            writeRichTextbox("클라이언트 연결확인");
-            
-            strReader = new StreamReader(client1.GetStream());
-            strWriter = new StreamWriter(client1.GetStream());
-            strWriter.AutoFlush = true;//쓰기버퍼 쓰고나면 자동으로 플러시실행
-
-            while (client1.Connected)
+            try
             {
-                string receivedData = strReader.ReadLine();
-                writeRichTextbox(receivedData);
+                TcpListener Listener = new TcpListener(IPAddress.Parse(textBox1.Text), int.Parse(textBox2.Text));
+
+                Listener.Start(); //tcp리스닝 시작
+                writeRichTextbox("클라이언트 대기중....");
+
+                TcpClient client1 = Listener.AcceptTcpClient();
+
+                writeRichTextbox("클라이언트 연결확인");
+
+                strReader = new StreamReader(client1.GetStream());
+                strWriter = new StreamWriter(client1.GetStream());
+                strWriter.AutoFlush = true;//쓰기버퍼 쓰고나면 자동으로 플러시실행
+
+                while (client1.Connected)
+                {
+                    string receivedData = strReader.ReadLine();
+                    writeRichTextbox(receivedData);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("연결에 문제가 생겼습니다. 연결을 종료합니다.", "경고");
+
             }
 
         }

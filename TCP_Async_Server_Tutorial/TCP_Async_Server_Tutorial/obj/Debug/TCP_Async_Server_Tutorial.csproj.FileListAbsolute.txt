@@ -1,1 +1,9 @@
 C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\bin\Debug\TCP_Async_Server_Tutorial.exe.config
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\bin\Debug\TCP_Async_Server_Tutorial.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\bin\Debug\TCP_Async_Server_Tutorial.pdb
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\obj\Debug\TCP_Async_Server_Tutorial.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\obj\Debug\TCP_Async_Server_Tutorial.Form1.resources
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\obj\Debug\TCP_Async_Server_Tutorial.Properties.Resources.resources
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\obj\Debug\TCP_Async_Server_Tutorial.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\obj\Debug\TCP_Async_Server_Tutorial.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Server_Tutorial\TCP_Async_Server_Tutorial\obj\Debug\TCP_Async_Server_Tutorial.pdb
