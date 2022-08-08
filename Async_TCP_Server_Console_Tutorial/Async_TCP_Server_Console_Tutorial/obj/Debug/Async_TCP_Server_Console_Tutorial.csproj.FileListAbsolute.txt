@@ -1,0 +1,6 @@
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\Async_TCP_Server_Console_Tutorial\Async_TCP_Server_Console_Tutorial\bin\Debug\Async_TCP_Server_Console_Tutorial.exe.config
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\Async_TCP_Server_Console_Tutorial\Async_TCP_Server_Console_Tutorial\bin\Debug\Async_TCP_Server_Console_Tutorial.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\Async_TCP_Server_Console_Tutorial\Async_TCP_Server_Console_Tutorial\bin\Debug\Async_TCP_Server_Console_Tutorial.pdb
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\Async_TCP_Server_Console_Tutorial\Async_TCP_Server_Console_Tutorial\obj\Debug\Async_TCP_Server_Console_Tutorial.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\Async_TCP_Server_Console_Tutorial\Async_TCP_Server_Console_Tutorial\obj\Debug\Async_TCP_Server_Console_Tutorial.pdb
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\Async_TCP_Server_Console_Tutorial\Async_TCP_Server_Console_Tutorial\obj\Debug\Async_TCP_Server_Console_Tutorial.csprojResolveAssemblyReference.cache

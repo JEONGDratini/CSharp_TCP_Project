@@ -46,8 +46,9 @@ namespace TCP_Async_Server_Tutorial
             richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.ScrollToCaret(); });//스크롤 내리기
         }
 
+
         private async Task Aysnc_Server() {
-            TcpListener listener = new TcpListener(IPAddress.Parse(textBox1.Text), int.Parse(textBox2.Text));
+            TcpListener listener = new TcpListener(IPAddress.Parse("111.111.0.31"), int.Parse("7000"));
             listener.Start();
             while (true) 
             {
@@ -57,6 +58,7 @@ namespace TCP_Async_Server_Tutorial
             
             }
         }
+
 
         private async void AsyncTcpProcess(object o)
         {
@@ -84,10 +86,18 @@ namespace TCP_Async_Server_Tutorial
 
 
        
-
+        //업데이트 되면 다른 클라이언트들에게도 메시지를 뿌린다.
         private void Chat_Content_Updated(object sender, EventArgs e)
         {
 
         }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

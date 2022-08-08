@@ -1,0 +1,8 @@
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Client_Tutorial\TCP_Client_Tutorial\bin\Release\TCP_Client_Tutorial.exe.config
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Client_Tutorial\TCP_Client_Tutorial\bin\Release\TCP_Client_Tutorial.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Client_Tutorial\TCP_Client_Tutorial\bin\Release\TCP_Client_Tutorial.pdb
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Client_Tutorial\TCP_Client_Tutorial\obj\Release\TCP_Client_Tutorial.Form1.resources
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Client_Tutorial\TCP_Client_Tutorial\obj\Release\TCP_Client_Tutorial.Properties.Resources.resources
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Client_Tutorial\TCP_Client_Tutorial\obj\Release\TCP_Client_Tutorial.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Client_Tutorial\TCP_Client_Tutorial\obj\Release\TCP_Client_Tutorial.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Client_Tutorial\TCP_Client_Tutorial\obj\Release\TCP_Client_Tutorial.pdb
