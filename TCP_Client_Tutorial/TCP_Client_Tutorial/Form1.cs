@@ -37,16 +37,14 @@ namespace TCP_Client_Tutorial
         {
             string sendData = textBox3.Text;
             strWriter.WriteLine(sendData);
-            writeRichTextbox(sendData);
         }
 
         private void writeRichTextbox(string str) {//인보크 써서 스레드간 충돌 방지
             richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.AppendText(str + "\r\n"); });//데이터 쓰기
-            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.ScrollToCaret(); });//스크롤 내리기
         }
 
-        private void clearRichTextBox() {//리치 텍스트박스 클리어해주는 메소드
-            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.Clear(); });
+        private void writeEndRichTextBox() {//리치 텍스트박스 클리어해주는 메소드
+            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.AppendText("서버 연결 종료\r\n\r\n"); });
         }
 
         private void connect()
@@ -65,13 +63,16 @@ namespace TCP_Client_Tutorial
                 while (client.Connected)
                 {
                     string receivedData = strReader.ReadLine();
-                    writeRichTextbox(receivedData);
+                    if (receivedData.Equals("Read Timeout Error"))
+                        writeRichTextbox("READ TIME OUT");
+                    else
+                        writeRichTextbox(receivedData);
                 }
             }
             catch {
                 MessageBox.Show("연결에 문제가 생겼습니다. 연결을 종료합니다.", "경고");
                 client.Close();
-                clearRichTextBox();
+                writeEndRichTextBox();
             }
         }
 
