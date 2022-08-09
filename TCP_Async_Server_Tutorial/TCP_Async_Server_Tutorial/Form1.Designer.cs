@@ -32,11 +32,16 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Client_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(237, 247);
+            this.button2.Location = new System.Drawing.Point(403, 247);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(64, 23);
             this.button2.TabIndex = 23;
@@ -58,7 +63,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(12, 247);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(219, 21);
+            this.textBox3.Size = new System.Drawing.Size(385, 21);
             this.textBox3.TabIndex = 19;
             // 
             // richTextBox1
@@ -66,23 +71,65 @@
             this.richTextBox1.Location = new System.Drawing.Point(12, 52);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(289, 186);
+            this.richTextBox1.Size = new System.Drawing.Size(276, 186);
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.Chat_Content_Updated);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(104, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "서버상태 : 닫힘";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(294, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(153, 12);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "현재 접속 중인 사용자 목록";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Client_Name});
+            this.dataGridView1.Location = new System.Drawing.Point(294, 52);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(153, 178);
+            this.dataGridView1.TabIndex = 27;
+            // 
+            // Client_Name
+            // 
+            this.Client_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Client_Name.HeaderText = "사용자 닉네임";
+            this.Client_Name.Name = "Client_Name";
+            this.Client_Name.ReadOnly = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 286);
+            this.ClientSize = new System.Drawing.Size(479, 286);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,6 +141,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Client_Name;
     }
 }
 

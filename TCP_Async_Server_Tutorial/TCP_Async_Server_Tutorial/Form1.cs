@@ -23,7 +23,7 @@ namespace TCP_Async_Server_Tutorial
         {
             InitializeComponent();
         }
-        //TcpClient 와 그에 해당하는 streamwriter, streamreader를 한번에 묶어서 저장해야할듯. 즉, 구조체? c#에선 뭐라고 부르지 어쨋든 그거 써야할듯.
+        
         
        
 
@@ -43,19 +43,19 @@ namespace TCP_Async_Server_Tutorial
         private void writeRichTextbox(string str)
         {//인보크 써서 스레드간 충돌 방지
             richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.AppendText(str + "\r\n"); });//데이터 쓰기
-            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.ScrollToCaret(); });//스크롤 내리기
         }
 
 
         private async Task Aysnc_Server() {
-            TcpListener listener = new TcpListener(IPAddress.Parse("111.111.0.31"), int.Parse("7000"));
+            TcpListener listener = new TcpListener(IPAddress.Any, int.Parse("50000"));
             listener.Start();
             while (true) 
             {
                 TcpClient tc = await listener.AcceptTcpClientAsync().ConfigureAwait(false);//비동기로 클라접속 대기
-
+                
                 Task.Factory.StartNew(AsyncTcpProcess, tc);
-            
+                
+
             }
         }
 
@@ -93,10 +93,7 @@ namespace TCP_Async_Server_Tutorial
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
 
 
     }
