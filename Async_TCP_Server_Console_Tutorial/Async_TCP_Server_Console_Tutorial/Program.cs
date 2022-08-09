@@ -24,12 +24,12 @@ namespace Async_TCP_Server_Console_Tutorial
 
             while (true)
             {
-
                 TcpClient tc = await listener.AcceptTcpClientAsync().ConfigureAwait(false);
                 Console.WriteLine("클라이언트 연결 성공");
 
                 // 새 쓰레드에서 처리
                 Task.Factory.StartNew(AsyncTcpProcess, tc);    
+
             }
 
         
@@ -38,40 +38,46 @@ namespace Async_TCP_Server_Console_Tutorial
 
         async static void AsyncTcpProcess(object o)
         {
-            TcpClient tc = (TcpClient)o;
-
-            int MAX_Size = 1024;
-            NetworkStream stream = tc.GetStream();
-            while (true)
+            try
             {
-                
-                var buff = new byte[MAX_Size];
+                TcpClient tc = (TcpClient)o;
 
-                var readTask = stream.ReadAsync(buff, 0, buff.Length);
-                var timeoutTask = Task.Delay(10 * 1000);  // 10 secs
-                var doneTask = await Task.WhenAny(timeoutTask, readTask).ConfigureAwait(false);
+                int MAX_Size = 1024;
+                NetworkStream stream = tc.GetStream();
+                while (true)
+                {
 
-                if (doneTask == timeoutTask) // 타임아웃이면
-                {
-                    var bytes = Encoding.ASCII.GetBytes("Read Timeout Error");
-                    await stream.WriteAsync(bytes, 0, bytes.Length);
-                    break;
-                }
-                else
-                {
-                    var nbytes = await stream.ReadAsync(buff, 0, buff.Length).ConfigureAwait(false);
-                    if (nbytes > 0)
+                    var buff = new byte[MAX_Size];
+
+                    var readTask = stream.ReadAsync(buff, 0, buff.Length);
+                    var timeoutTask = Task.Delay(60 * 1000);  // 10 secs
+                    var doneTask = await Task.WhenAny(timeoutTask, readTask).ConfigureAwait(false);
+
+                    if (doneTask == timeoutTask) // 타임아웃이면
                     {
-                        string msg = Encoding.ASCII.GetString(buff, 0, nbytes);
-                        Console.WriteLine(string.Format(msg + " at " + DateTime.Now));
+                        var bytes = Encoding.ASCII.GetBytes("Read Timeout Error");
+                        await stream.WriteAsync(bytes, 0, bytes.Length);
+                        break;
+                    }
+                    else
+                    {
+                        var nbytes = await stream.ReadAsync(buff, 0, buff.Length).ConfigureAwait(false);
+                        if (nbytes > 0)
+                        {
+                            string msg = Encoding.ASCII.GetString(buff, 0, nbytes);
+                            Console.WriteLine(string.Format(msg + " at " + DateTime.Now));
 
-                        await stream.WriteAsync(buff, 0, nbytes).ConfigureAwait(false);
+                            await stream.WriteAsync(buff, 0, nbytes).ConfigureAwait(false);
+                        }
                     }
                 }
-            }
 
-            stream.Close();
-            tc.Close();
+                stream.Close();
+                tc.Close();
+            }
+            catch {
+                Console.WriteLine("통신이 종료되었습니다.");
+            }
         }
     }
 }                                

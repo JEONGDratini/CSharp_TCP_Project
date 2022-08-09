@@ -18,6 +18,8 @@ namespace TCP_Client_Tutorial
 {
     public partial class Form1 : Form
     {
+
+
         public Form1()
         {
             InitializeComponent();
@@ -43,8 +45,8 @@ namespace TCP_Client_Tutorial
             richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.AppendText(str + "\r\n"); });//데이터 쓰기
         }
 
-        private void writeEndRichTextBox() {//리치 텍스트박스 클리어해주는 메소드
-            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.AppendText("서버 연결 종료\r\n\r\n"); });
+        private void writeEndRichTextBox() {//리치 텍스트박스 해주는 메소드
+            richTextBox1.Invoke((MethodInvoker)delegate { richTextBox1.AppendText("서버 연결 종료\r\n"); });
         }
 
         private void connect()
