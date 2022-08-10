@@ -57,21 +57,78 @@ namespace TCP_Async_Chatting_Server
                     string NickName = Encoding.Unicode.GetString(buffer, 0, bytes);
                     NickName = NickName.Substring(0, NickName.IndexOf("$"));//client 사용자 이름을 받아온다. 이 형식대로 사용자가 통신을 할 것이다.
 
+                    clientList.Add(clientSocket, NickName);//클라 리스트에 닉네임과 클라소켓 맵핑시켜 추가한다.
+
+                    SendMessageToAll(NickName + " 님이 입장했습니다.", "", false);
+
+                    handleClient h_client = new handleClient();//클라이언트 추가
+
+                    h_client.OnReceived += new handleClient.MessageDisplayHandler(OnReceived);//MessageDisplayHandler에 OnReceived 메서드를 패러미터로 넘긴다.
+                    h_client.OnDisconnected += new handleClient.DisconnectedHandler(h_client_OnDisconnected);//DisconnectedHandler에 h_client_OnDisconnected메서드를 패러미터로 넘긴다.
+                    h_client.startClient(clientSocket, clientList);
                 }
-                catch { break; }
+                catch { break; }//오류든 뭐든 중간에 뭐가 이상하면 반복문 박-살
             }
-
-
+            clientSocket.Close();//클라소켓 닫고
+            server.Stop();//서버중지
         }
+
+        void h_client_OnDisconnected(TcpClient clientSocket)
+        {
+            if (clientList.ContainsKey(clientSocket))//클라리스트에 해당 클라가 존재하면 삭제한다.
+                clientList.Remove(clientSocket);
+        }
+
+        private void OnReceived(string message, string NickName)
+        {
+            if (message.Equals("LeaveChat"))//클라로부터 받아온 메시지가 떠난다는거면
+            {
+                string displayMessage = "user " + NickName + " leave chat";//떠난다고 채팅방에 표기하기
+                AddText(displayMessage);
+                SendMessageToAll("LeaveChat", NickName, true);
+            }
+            else//아니면
+            {
+                string displayMessage = "From client " + NickName + " : " + message;//보낸 메시지 출력
+                AddText(displayMessage);
+                SendMessageToAll(message, NickName, true);
+            }
+        }
+
 
         private void AddText(string contents)
         {
-            if (richTextBox1.InvokeRequired)
-            {
+            if (richTextBox1.InvokeRequired)//폼 컨트롤은 다른 쓰레드에서 관리할 수도 있으므로 invokeRequired로 체크해 
+            {//필요하면 델리게이트를 사용해서 텍스트박스내용을 수정하고
                 richTextBox1.BeginInvoke(new MethodInvoker(delegate { richTextBox1.AppendText(contents + "\r\n"); }));
             }
-            else
+            else//안필요하면 그냥 수정한다.
                 richTextBox1.AppendText(contents + "\r\n");
+        }
+
+        public void SendMessageToAll(string message, string NickName, bool flag)
+        {
+            foreach (var pair in clientList)//클라리스트에 있는 모든 클라에게 송신한다.
+            {
+                date = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
+
+                TcpClient client = pair.Key as TcpClient;//해당 딕셔너리 원소의 키값을 tcp클라이언트로 받는다.
+
+                NetworkStream stream = client.GetStream();
+                byte[] buffer = null;
+
+                if (flag)
+                {
+                    if (message.Equals("LeaveChat"))
+                        buffer = Encoding.Unicode.GetBytes(NickName + "님이 나갔습니다.");
+                    else
+                        buffer = Encoding.Unicode.GetBytes("[" + date + "]" + NickName + " : " + message);
+                }
+                else
+                    buffer = Encoding.Unicode.GetBytes(message);
+                stream.Write(buffer, 0, buffer.Length);//버퍼에 쓰기
+                stream.Flush();
+            }
         }
     }
 }

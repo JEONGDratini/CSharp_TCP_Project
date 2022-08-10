@@ -1,1 +1,9 @@
 C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\bin\Debug\TCP_Async_Chatting_Server.exe.config
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\bin\Debug\TCP_Async_Chatting_Server.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\bin\Debug\TCP_Async_Chatting_Server.pdb
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\obj\Debug\TCP_Async_Chatting_Server.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\obj\Debug\TCP_Async_Chatting_Server.Form1.resources
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\obj\Debug\TCP_Async_Chatting_Server.Properties.Resources.resources
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\obj\Debug\TCP_Async_Chatting_Server.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\obj\Debug\TCP_Async_Chatting_Server.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Async_Chatting_Server\TCP_Async_Chatting_Server\obj\Debug\TCP_Async_Chatting_Server.pdb
