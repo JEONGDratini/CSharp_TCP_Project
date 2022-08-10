@@ -114,14 +114,14 @@ namespace TCP_Async_Chatting_Server
 
                 TcpClient client = pair.Key as TcpClient;//해당 딕셔너리 원소의 키값을 tcp클라이언트로 받는다.
 
-                NetworkStream stream = client.GetStream();
+                NetworkStream stream = client.GetStream();//클라에서 네트워크 스트림 받아온다음.
                 byte[] buffer = null;
 
-                if (flag)
+                if (flag)//접속시도에서 보낸 스트림인지 아닌지 여부
                 {
-                    if (message.Equals("LeaveChat"))
+                    if (message.Equals("LeaveChat"))//클라가 채팅방 떠날 때
                         buffer = Encoding.Unicode.GetBytes(NickName + "님이 나갔습니다.");
-                    else
+                    else//그냥 채팅일 때
                         buffer = Encoding.Unicode.GetBytes("[" + date + "]" + NickName + " : " + message);
                 }
                 else
