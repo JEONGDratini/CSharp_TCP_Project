@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\bin\Release\TCP_Chat_Client.exe.config
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\bin\Release\TCP_Chat_Client.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\bin\Release\TCP_Chat_Client.pdb
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\obj\Release\TCP_Chat_Client.Form1.resources
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\obj\Release\TCP_Chat_Client.Properties.Resources.resources
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\obj\Release\TCP_Chat_Client.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\obj\Release\TCP_Chat_Client.exe
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\obj\Release\TCP_Chat_Client.pdb
+C:\Users\user\Desktop\정민용\C#\CSharp_TCP_Project\TCP_Chat_Client\TCP_Chat_Client\obj\Release\TCP_Chat_Client.csprojResolveAssemblyReference.cache
