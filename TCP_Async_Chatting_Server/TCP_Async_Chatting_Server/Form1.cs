@@ -20,8 +20,11 @@ namespace TCP_Async_Chatting_Server
         TcpClient clientSocket = null; // 소켓
         static int counter = 0; // 사용자 수
         string date; // 날짜 
+        string start_time = DateTime.Now.ToString("[yyyy.MM.dd HH:mm:ss]");//로그파일에 기록할 서버시작시간.
+        int chat_capacity;
         // 각 클라이언트 마다 리스트에 추가
         public Dictionary<TcpClient, string> clientList = new Dictionary<TcpClient, string>();
+
 
         public Form1()
         {
@@ -34,6 +37,38 @@ namespace TCP_Async_Chatting_Server
             Thread socketThread = new Thread(initSocket);
             socketThread.IsBackground = true;//폼 종료될 때 같이 종료된다.
             socketThread.Start();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            chat_capacity = richTextBox1.Text.Length;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string LogFolderPath = string.Format(".\\ChatLogs");//채팅로그파일경로설정
+            string end_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");//종료시점 날짜를 받아온다.
+            if (!Directory.Exists(LogFolderPath))//로그파일폴더가 존재하지 않으면 폴더를 만든다.
+            {
+                Directory.CreateDirectory(LogFolderPath);
+            }
+
+            try
+            {
+                //로그파일 생성 및 작성
+                string filePath = string.Format(".\\ChatLogs\\" + start_time + "__" + end_time + ".txt");
+                FileStream LogFileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+                StreamWriter LogWriter = new StreamWriter(LogFileStream, Encoding.UTF8);
+
+
+                LogWriter.WriteLine(richTextBox1.Text);
+                LogWriter.Flush();
+                LogWriter.Close();
+                LogFileStream.Close();
+            }
+            catch (Exception exa){
+                return;
+            }
         }
 
         private void initSocket()
@@ -98,12 +133,20 @@ namespace TCP_Async_Chatting_Server
 
         private void AddText(string contents)
         {
-            if (richTextBox1.InvokeRequired)//폼 컨트롤은 다른 쓰레드에서 관리할 수도 있으므로 invokeRequired로 체크해 
-            {//필요하면 델리게이트를 사용해서 텍스트박스내용을 수정하고
-                richTextBox1.BeginInvoke(new MethodInvoker(delegate { richTextBox1.AppendText(contents + "\r\n"); }));
+            if (chat_capacity < 1000000)//총 텍스트 갯수가 100만개 이하여야함.
+            {
+                if (richTextBox1.InvokeRequired)//폼 컨트롤은 다른 쓰레드에서 관리할 수도 있으므로 invokeRequired로 체크해 
+                {//필요하면 델리게이트를 사용해서 텍스트박스내용을 수정하고
+                    richTextBox1.BeginInvoke(new MethodInvoker(delegate { richTextBox1.AppendText(contents + "\r\n"); })); 
+                }
+                else//안필요하면 그냥 수정한다.
+                    richTextBox1.AppendText(contents + "\r\n");
             }
-            else//안필요하면 그냥 수정한다.
-                richTextBox1.AppendText(contents + "\r\n");
+            else
+            {
+                SendMessageToAll("서버가 터졌습니다. 접속을 종료해주세요.", "Server Manager", true);
+                MessageBox.Show("서버용량 초과. 재시작 필요.", "경고");
+            }
         }
 
         public void SendMessageToAll(string message, string NickName, bool flag)
@@ -130,5 +173,9 @@ namespace TCP_Async_Chatting_Server
                 stream.Flush();
             }
         }
+
+
+
+
     }
 }

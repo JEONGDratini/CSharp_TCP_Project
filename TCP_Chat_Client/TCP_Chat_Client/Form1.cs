@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using System.Threading;
+using System.IO;
 
 namespace TCP_Chat_Client
 {
@@ -17,6 +18,7 @@ namespace TCP_Chat_Client
         TcpClient clientSocket = new TcpClient(); //소켓 클라 생성
         NetworkStream stream = default(NetworkStream);
         string message = string.Empty;
+        string start_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
 
         public Form1()
         {
@@ -75,9 +77,31 @@ namespace TCP_Chat_Client
                 byte[] buffer = Encoding.Unicode.GetBytes("LeaveChat" + "$");
                 stream.Write(buffer, 0, buffer.Length);
                 stream.Flush();
+                try
+                {
+                    string LogFolderPath = ".\\Chat_Logs";//채팅로그파일경로설정
+                    string end_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");//종료시점 날짜를 받아온다.
+                    if (!Directory.Exists(LogFolderPath))//로그파일폴더가 존재하지 않으면 폴더를 만든다.
+                    {
+                        Directory.CreateDirectory(LogFolderPath);
+                    }
+
+                    //로그파일 생성 및 작성
+                    FileStream LogFileStream = new FileStream(string.Format(LogFolderPath + "\\" + start_time + "__" + end_time), FileMode.Create, FileAccess.Write);
+                    StreamWriter LogWriter = new StreamWriter(LogFileStream, System.Text.Encoding.UTF8);
+
+                    LogWriter.WriteLine(richTextBox1.Text);
+                    LogWriter.Flush();
+                    LogWriter.Close();
+                    LogFileStream.Close();
+                }
+                catch (Exception exa)
+                {
+                    return;
+                }
+
             }
-            Application.ExitThread();//메인 스레드 종료하고
-            Environment.Exit(0);//프로세스 종료시킨다.
+
         }
 
         private void GetMessage()//메시지 수신받는 메서드
@@ -102,14 +126,5 @@ namespace TCP_Chat_Client
                 richTextBox1.AppendText(text + "\r\n");
         }
 
-
-
-
-
-        
-
-
-
-        
     }
 }
