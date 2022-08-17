@@ -173,9 +173,5 @@ namespace TCP_Async_Chatting_Server
                 stream.Flush();
             }
         }
-
-
-
-
     }
 }

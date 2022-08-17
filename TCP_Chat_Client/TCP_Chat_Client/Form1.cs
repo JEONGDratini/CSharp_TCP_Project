@@ -20,6 +20,8 @@ namespace TCP_Chat_Client
         string message = string.Empty;
         string start_time = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss");
 
+        FileStream LogFileStream;
+
         public Form1()
         {
             InitializeComponent();
@@ -87,7 +89,7 @@ namespace TCP_Chat_Client
                     }
 
                     //로그파일 생성 및 작성
-                    FileStream LogFileStream = new FileStream(string.Format(LogFolderPath + "\\" + start_time + "__" + end_time), FileMode.Create, FileAccess.Write);
+                    LogFileStream = new FileStream(string.Format(LogFolderPath + "\\" + start_time + "__" + end_time), FileMode.Create, FileAccess.Write);
                     StreamWriter LogWriter = new StreamWriter(LogFileStream, System.Text.Encoding.UTF8);
 
                     LogWriter.WriteLine(richTextBox1.Text);
@@ -117,6 +119,7 @@ namespace TCP_Chat_Client
                 AddText(message);//그렇게 만든 메시지 출력.
             }
         }
+
 
         private void AddText(string text)//채팅내용 텍스트박스 수정하는 메서드
         {
